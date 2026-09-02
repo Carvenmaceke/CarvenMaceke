@@ -31,51 +31,39 @@
   function init_cv_gate() {
     const CV_ACCESS_CODE = "20212024";
     const CV_FILE = "CarvenMaceke_Resume.pdf";
+    const OWNER_EMAIL = "carvenmaceke9@gmail.com";
 
     const modalEl = document.getElementById('cvGateModal');
     if (!modalEl) return; // gate not present on this page
 
     const emailForm = document.getElementById('cvEmailForm');
-    const emailError = document.getElementById('cvEmailError');
-    const submitBtn = document.getElementById('cvEmailSubmitBtn');
+    const emailInput = document.getElementById('cvEmail');
     const codeStep = document.getElementById('cvCodeStep');
     const codeInput = document.getElementById('cvCode');
     const codeError = document.getElementById('cvCodeError');
     const unlockBtn = document.getElementById('cvUnlockBtn');
 
-    function encodeForm(data) {
-      return Object.keys(data)
-        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-        .join("&");
-    }
-
-    // Step 1: submit the email request to Netlify Forms (emails the site owner)
+    // Step 1: open the visitor's own email app, addressed to the site owner,
+    // with the visitor's email included in the message body.
     emailForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      emailError.style.display = 'none';
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
 
-      const formData = new FormData(emailForm);
-      const payload = {};
-      formData.forEach((value, key) => { payload[key] = value; });
+      const visitorEmail = emailInput.value.trim();
+      const subject = 'CV Download Request';
+      const body =
+        'Hi Carven,\n\nI would like to download your CV from your portfolio site.\n\nMy email address: ' +
+        visitorEmail +
+        '\n\nPlease send me the access code.';
 
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encodeForm(payload)
-      })
-        .then(() => {
-          emailForm.style.display = 'none';
-          codeStep.style.display = 'block';
-        })
-        .catch(() => {
-          emailError.style.display = 'block';
-        })
-        .finally(() => {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Request Access Code';
-        });
+      const mailtoLink =
+        'mailto:' + OWNER_EMAIL +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+
+      window.location.href = mailtoLink;
+
+      emailForm.style.display = 'none';
+      codeStep.style.display = 'block';
     });
 
     // Step 2: check the access code, then trigger the real download
@@ -105,7 +93,6 @@
       codeStep.style.display = 'none';
       codeInput.value = '';
       codeError.style.display = 'none';
-      emailError.style.display = 'none';
     });
   }
 

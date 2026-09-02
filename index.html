@@ -2096,23 +2096,18 @@ AVAILABILITY: Open to Junior Developer, Technical Specialist, or Cloud Engineer 
         <div class="modal-body">
 
           <!-- Step 1: request access via email -->
-          <form id="cvEmailForm" name="cv-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="cv-request">
-            <p style="position:absolute;left:-9999px;" aria-hidden="true">
-              <label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
-            </p>
-            <p class="mb-3">Enter your email address to request the CV. Carven will be notified and will send you an access code to unlock the download.</p>
+          <form id="cvEmailForm">
+            <p class="mb-3">Enter your email address to request the CV. This will open your email app with a message to Carven — send it, and he'll reply with an access code to unlock the download.</p>
             <div class="form-group mb-3">
               <label for="cvEmail" class="form-label fw-bolder">Your Email</label>
               <input type="email" class="form-control" id="cvEmail" name="email" required>
             </div>
-            <div id="cvEmailError" class="text-danger mb-2" style="display:none;">Something went wrong sending your request. Please try again.</div>
             <button type="submit" class="btn btn-primary" id="cvEmailSubmitBtn">Request Access Code</button>
           </form>
 
           <!-- Step 2: enter access code -->
           <div id="cvCodeStep" style="display:none;">
-            <p class="mb-3">Thanks — your request has been sent. Enter the access code Carven sends you to unlock your download.</p>
+            <p class="mb-3">Your email app should have opened with a message ready to send to Carven. Once you've sent it, he'll reply with an access code — enter it below to unlock your download.</p>
             <div class="form-group mb-3">
               <label for="cvCode" class="form-label fw-bolder">Access Code</label>
               <input type="text" inputmode="numeric" class="form-control" id="cvCode">
