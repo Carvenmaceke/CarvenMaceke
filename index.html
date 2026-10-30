@@ -19,6 +19,8 @@
     <link href="./css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
     <link href="./css/aos.css?ver=1.2.0" rel="stylesheet">
     <link href="./css/main.css?ver=1.2.0" rel="stylesheet">
+    <link href="./css/three-d.css?ver=1.0.0" rel="stylesheet">
+    <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
     <noscript>
       <style type="text/css">
         [data-aos] {
@@ -76,7 +78,11 @@
     <div class="container px-3">
       <div class="row">
         <div class="col-lg-6 p-2">
-          <img class="img-fluid" src="images/illustrations/folks-man-programmer-writing-code.png" alt="Hello, I'm a Software Developer" />
+          <div class="hero3d" id="hero3d">
+            <canvas aria-label="3D laptop writing Java code, with my tech stack orbiting around it" role="img"></canvas>
+            <img class="img-fluid hero3d-fallback" src="images/illustrations/folks-man-programmer-writing-code.png" alt="Hello, I'm a Software Developer" />
+            <span class="hero3d-hint">Move your mouse to look around</span>
+          </div>
         </div>
         <div class="col-lg-6">
           <div class="mt-5">
@@ -217,7 +223,7 @@
 
       </div>
       <div class="col-md-5 offset-md-1" data-aos="zoom-in" data-aos-delay="500">
-        <img class="avatar img-fluid mt-2" src="images/WhatsApp Image 2025-04-11 at 16.25.33_7bceeb2f.jpg" width="400" height="400" alt="Carven Maceke"/>
+        <img class="avatar img-fluid mt-2 about-photo-3d" src="images/WhatsApp Image 2025-04-11 at 16.25.33_7bceeb2f.jpg" width="400" height="400" alt="Carven Maceke"/>
       </div>
     </div>
   </div>
@@ -2178,5 +2184,7 @@ AVAILABILITY: Seeking Junior Software Engineer, Backend or Full-Stack Developer 
     </div>
   </div>
 
+<script src="./scripts/depth3d.js?ver=1.0.0"></script>
+<script type="module" src="./scripts/hero3d.js?ver=1.0.0"></script>
   </body>
 </html>
