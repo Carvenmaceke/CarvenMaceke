@@ -1,0 +1,31 @@
+/* ── 3D hero ── */
+.hero3d { position: relative; height: 440px; margin: -1rem 0 0; }
+.hero3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .8s ease; cursor: grab; }
+.hero3d .hero3d-fallback { position: absolute; inset: 0; margin: auto; max-height: 100%; object-fit: contain; transition: opacity .5s ease; }
+.hero3d.is-3d canvas { opacity: 1; }
+.hero3d.is-3d .hero3d-fallback { opacity: 0; pointer-events: none; }
+.hero3d-hint { position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.55); white-space: nowrap; opacity: 0; transition: opacity .8s ease .8s; pointer-events: none; }
+.hero3d.is-3d .hero3d-hint { opacity: 1; }
+@media (max-width: 991px) { .hero3d { height: 320px; margin: 0; } .hero3d-hint { display: none; } }
+
+/* ── Depth on the headline ── */
+.cover .intro-title { text-shadow: 0 1px 0 rgba(0,168,181,.55), 0 2px 0 rgba(0,122,133,.5), 0 3px 0 rgba(0,90,100,.45), 0 10px 24px rgba(0,0,0,.35); }
+
+/* ── Tilt cards ── */
+.tilt3d { transition: transform .45s cubic-bezier(.2,.7,.2,1), box-shadow .45s ease; transform-style: preserve-3d; will-change: transform; position: relative; }
+.tilt3d:hover { box-shadow: 0 24px 48px -18px rgba(15,43,74,.35); }
+.flip-card.tilt3d:hover { box-shadow: none; }
+.tilt3d-glare { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .35s ease; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(255,255,255,.45), rgba(255,255,255,0) 55%); mix-blend-mode: soft-light; z-index: 5; }
+.tilt3d:hover .tilt3d-glare { opacity: 1; }
+.flip-card.tilt3d .tilt3d-glare { border-radius: 16px; }
+.certificate-card.tilt3d, .fl-card.tilt3d { border-radius: 16px; }
+
+/* ── Turn into view on scroll ── */
+.reveal3d { opacity: 0; translate: 0 46px; rotate: 1 0 0 16deg; transform-origin: 50% 100%; transition: opacity .8s ease, translate .9s cubic-bezier(.2,.7,.2,1), rotate .9s cubic-bezier(.2,.7,.2,1); }
+.reveal3d.in { opacity: 1; translate: 0 0; rotate: 1 0 0 0deg; }
+.flip-card-grid, .fl-grid, #certificates .row, .skills-shell, #contact .row { perspective: 1400px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal3d { opacity: 1; translate: none; rotate: none; }
+  .hero3d canvas { transition: none; }
+}
